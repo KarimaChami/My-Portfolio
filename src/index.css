@@ -1,0 +1,166 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Jost:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 35 33% 99%;
+    --foreground: 20 8% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 20 8% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 8% 15%;
+
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 348 100% 94%;
+    --secondary-foreground: 348 35% 35%;
+
+    --muted: 30 10% 92%;
+    --muted-foreground: 20 5% 45%;
+
+    --accent: 24 100% 88%;
+    --accent-foreground: 20 8% 25%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 20 5% 90%;
+    --input: 20 5% 90%;
+    --ring: 24 95% 53%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-jost selection:bg-lamsatum-orange/20 selection:text-lamsatum-terracotta;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-lamsatum-orange/20 text-lamsatum-terracotta;
+  }
+}
+
+@layer components {
+  .heading-1 {
+    @apply font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight;
+  }
+  
+  .heading-2 {
+    @apply font-playfair text-3xl md:text-4xl font-semibold leading-tight;
+  }
+  
+  .heading-3 {
+    @apply font-playfair text-2xl md:text-3xl font-medium leading-snug;
+  }
+  
+  .subtitle {
+    @apply text-sm md:text-base uppercase tracking-widest font-medium;
+  }
+  
+  .glass-card {
+    @apply rounded-xl bg-white/60 backdrop-blur-md border border-white/20 shadow-sm;
+  }
+  
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-[1.02] active:scale-[0.99];
+  }
+  
+  /* Staggered animation classes for children */
+  .stagger-children > *:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  
+  .stagger-children > *:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .stagger-children > *:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  
+  .stagger-children > *:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  
+  .stagger-children > *:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  
+  /* Product details animation */
+  .ingredient-tag {
+    @apply inline-block px-3 py-1 text-xs rounded-full bg-lamsatum-sand text-lamsatum-terracotta 
+      border border-lamsatum-terracotta/20 m-1 opacity-0 transform translate-y-2
+      transition-all duration-300 hover:bg-lamsatum-terracotta/10;
+  }
+  
+  .ingredient-tag.visible {
+    @apply opacity-100 translate-y-0;
+  }
+  
+  .product-card {
+    @apply overflow-hidden relative transition-all duration-500 ease-out;
+  }
+  
+  .product-card-content {
+    @apply opacity-0 transform translate-y-4 transition-all duration-500 delay-100;
+  }
+  
+  .product-card.active .product-card-content {
+    @apply opacity-100 translate-y-0;
+  }
+  
+  .product-card.active {
+    @apply z-10;
+  }
+  
+  .product-image-container {
+    @apply overflow-hidden rounded-lg;
+  }
+  
+  .product-image {
+    @apply transition-transform duration-700 ease-out;
+  }
+  
+  .product-card:hover .product-image {
+    @apply scale-105;
+  }
+}
+
+@layer utilities {
+  .font-playfair {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .font-jost {
+    font-family: 'Jost', sans-serif;
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+}
